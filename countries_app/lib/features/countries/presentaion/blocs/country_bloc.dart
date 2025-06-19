@@ -21,10 +21,14 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
     });
 
     on<SearchCountries>((event, emit) {
-      final filtered = _allCountries.where((country) =>
-        country.name.toLowerCase().contains(event.query.toLowerCase())
-      ).toList();
-
+      final filtered =
+          _allCountries
+              .where(
+                (country) => (country.name ?? '').toLowerCase().contains(
+                  event.query.toLowerCase(),
+                ),
+              )
+              .toList();
       emit(CountryLoaded(filtered));
     });
   }

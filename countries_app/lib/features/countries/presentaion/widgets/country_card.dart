@@ -1,4 +1,5 @@
 import 'package:countries_app/features/countries/domain/entities/country.dart';
+import 'package:countries_app/features/countries/presentaion/pages/country_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class CountryCard extends StatelessWidget {
@@ -9,10 +10,7 @@ class CountryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(
-        country.flag,
-        style: const TextStyle(fontSize: 28),
-      ),
+      leading: Text(country.flag, style: const TextStyle(fontSize: 28)),
       title: Text(country.name),
       subtitle: Text('Population: ${_formatPopulation(country.population)}'),
       trailing: IconButton(
@@ -21,6 +19,13 @@ class CountryCard extends StatelessWidget {
           // TODO: Handle add to favorites
         },
       ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => CountryDetailPage(country: country),
+          ),
+        );
+      },
     );
   }
 

@@ -20,8 +20,9 @@ class CountryModel {
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) {
+    final nameMap = json['name'] as Map<String, dynamic>? ?? {};
     return CountryModel(
-      name: json['name']?['common'] ?? 'Unknown',
+      name: nameMap['common'] ?? '',
       flag: json['flag'] ?? '',
       area: (json['area'] as num?)?.toDouble() ?? 0.0,
       region: json['region'] ?? '',
@@ -33,7 +34,7 @@ class CountryModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'name': {'common': name},
+      'name': name,
       'flag': flag,
       'area': area,
       'region': region,

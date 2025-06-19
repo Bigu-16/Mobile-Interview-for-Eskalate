@@ -15,11 +15,13 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<CountryRepository>(
-      () => CountryRepositoryImpl(remoteDataSource: sl()));
+    () => CountryRepositoryImpl(remoteDataSource: sl()),
+  );
 
   // Data sources
   sl.registerLazySingleton<CountryRemoteDataSource>(
-      () => CountryRemoteDataSourceImpl(client: sl()));
+    () => CountryRemoteDataSourceImpl(client: sl()),
+  );
 
   // External
   sl.registerLazySingleton(() => http.Client());

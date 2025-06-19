@@ -1,4 +1,7 @@
 import 'package:countries_app/dependency_injection/di.dart';
+import 'package:countries_app/features/countries/data/model/country_model.dart';
+import 'package:countries_app/features/countries/domain/entities/country.dart';
+import 'package:countries_app/features/countries/domain/repositories/country_repository.dart';
 import 'package:countries_app/features/countries/presentaion/blocs/country_bloc.dart';
 import 'package:countries_app/features/countries/presentaion/blocs/country_event.dart';
 import 'package:countries_app/features/countries/presentaion/blocs/country_state.dart';
@@ -147,5 +150,32 @@ class _CountriesPageState extends State<CountriesPage> {
         ),
       ),
     );
+  }
+}
+
+class CountryBloc extends Bloc<CountryEvent, CountryState> {
+  final CountryRepository repository;
+  List<Country> _allCountries = [];
+
+  CountryBloc(this.repository) : super(CountryLoading()) {
+    on<LoadCountries>((event, emit) async {
+      emit(CountryLoading());
+      try {
+        final countries = await repository.getAllCountries();
+        _allCountries = countries;
+        emit(CountryLoaded(countries));
+      } catch (e) {
+        emit(CountryError(e.toString()));
+      }
+    });
+
+    on<SearchCountries>((event, emit) {
+      final query = event.query.toLowerCase();
+      final filtered =
+          _allCountries
+              .where((country) => country.name.toLowerCase().contains(query))
+              .toList();
+      emit(CountryLoaded(filtered));
+    });
   }
 }
