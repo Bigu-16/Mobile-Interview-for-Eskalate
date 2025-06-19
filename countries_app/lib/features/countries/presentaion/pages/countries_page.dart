@@ -2,9 +2,10 @@ import 'package:countries_app/dependency_injection/di.dart';
 import 'package:countries_app/features/countries/data/model/country_model.dart';
 import 'package:countries_app/features/countries/domain/entities/country.dart';
 import 'package:countries_app/features/countries/domain/repositories/country_repository.dart';
-import 'package:countries_app/features/countries/presentaion/blocs/country_bloc.dart';
-import 'package:countries_app/features/countries/presentaion/blocs/country_event.dart';
-import 'package:countries_app/features/countries/presentaion/blocs/country_state.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/country/country_bloc.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/country/country_event.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/country/country_state.dart';
+import 'package:countries_app/features/countries/presentaion/pages/favorites_page.dart';
 import 'package:countries_app/features/countries/presentaion/widgets/country_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,54 +100,6 @@ class _CountriesPageState extends State<CountriesPage> {
               ),
             ),
           ],
-        ),
-        bottomNavigationBar: Container(
-          width: 390,
-          height: 75,
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: const Border(
-              top: BorderSide(width: 1, color: Color(0xFFE0E0E0)),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Container(
-                  height: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: IconButton(
-                      icon: const Icon(Icons.home),
-                      iconSize: 32,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  height: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: IconButton(
-                      icon: const Icon(Icons.favorite_border),
-                      iconSize: 32,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:countries_app/features/countries/domain/entities/country.dart';
 import 'package:countries_app/features/countries/domain/usecases/get_all_countries.dart';
-import 'package:countries_app/features/countries/presentaion/blocs/country_event.dart';
-import 'package:countries_app/features/countries/presentaion/blocs/country_state.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/country/country_event.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/country/country_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CountryBloc extends Bloc<CountryEvent, CountryState> {

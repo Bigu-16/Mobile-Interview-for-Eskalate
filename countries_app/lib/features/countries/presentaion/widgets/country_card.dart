@@ -1,6 +1,10 @@
 import 'package:countries_app/features/countries/domain/entities/country.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/fav/fav_bloc.dart';
+import 'package:countries_app/features/countries/presentaion/blocs/fav/fav_event.dart';
 import 'package:countries_app/features/countries/presentaion/pages/country_detail_page.dart';
+import 'package:countries_app/features/countries/presentaion/pages/favorites_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CountryCard extends StatelessWidget {
   final Country country;
@@ -16,7 +20,8 @@ class CountryCard extends StatelessWidget {
       trailing: IconButton(
         icon: const Icon(Icons.favorite_border),
         onPressed: () {
-          // TODO: Handle add to favorites
+          context.read<FavoritesBloc>().add(AddFavorite(country));
+          // Do NOT navigate here!
         },
       ),
       onTap: () {
